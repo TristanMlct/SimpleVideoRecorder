@@ -4,7 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta 
+        http-equiv="Content-Security-Policy" 
+        content="default-src 'self'; 
+          script-src 'self'; 
+          font-src 'self' https://fonts.gstatic.com;
+          style-src 'self' https://fonts.googleapis.com;
+          media-src 'self' data: blob: *">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
   <link rel="stylesheet" href="css/style.css">
   <title>Hello World!</title>
 </head>
@@ -40,6 +48,35 @@
       </button>
     </div>
   </header>
+  <main>
+    <div id="settings-container">
+      <div>
+        <label for="isAudio">Audio : </label>
+        <input type="checkbox" checked name="isAudio" id="isAudio">
+      </div>
+      <div>
+        <label for="isVideo">Video : </label>
+        <input type="checkbox" name="isVideo" id="isVideo">
+      </div>
+      <div>
+        <label for="audioSource">Audio source : </label>
+        <select name="audioSource" id="audioSource">
+
+        </select>
+      </div>
+    </div>
+    <div id="video-container">
+      <audio id="preview"></audio>
+      <audio id="record" controls></audio>
+    </div>
+    <div id="btn-container">
+      <button id="startBtn">Start record</button>
+      <button id="stopBtn">Stop record</button>
+    </div>
+    <p id="log">
+    </p>
+  </main>
 </body>
 <script src="./scripts/btnCtrl.js"></script>
+<script src="./scripts/videoCtrl.js"></script>
 </html>

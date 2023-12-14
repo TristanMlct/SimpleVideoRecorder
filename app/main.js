@@ -6,16 +6,15 @@ function createWindow() {
 
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 1600,
-    height: 1000,
-    minWidth: 600,
-    minHeight: 400,
+    width: 800,
+    height: 400,
     center: true,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
     },
     frame: false,
+    resizable: false,
   });
 
   // and load the index.html of the app.
@@ -28,7 +27,7 @@ function createWindow() {
   // );
 
   // Open the DevTools.
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools({ mode: 'detach' });
 
   // Close app
   ipcMain.on('closeApp', () => {

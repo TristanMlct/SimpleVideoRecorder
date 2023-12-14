@@ -69,3 +69,17 @@ header #buttons button:hover {
 header #buttons button.inactive {
   display: none;
 }
+
+main {
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+#settings-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: large;
+  font-family: 'Roboto', sans-serif;
+  margin: 20px 0;
+}
