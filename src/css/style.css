@@ -83,3 +83,21 @@ main {
   font-family: 'Roboto', sans-serif;
   margin: 20px 0;
 }
+
+#settings-container div {
+  width: 25%;
+}
+
+#settings-container div select {
+  width: 80%;
+}
+
+#video-container #preview {
+  width: 300px;
+  height: 150px;
+}
+
+#video-container #record {
+  width: 300px;
+  height: 150px;
+}

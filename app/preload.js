@@ -7,4 +7,8 @@ contextBridge.exposeInMainWorld('btnEvent', {
   win: () => ipcRenderer.send('winApp'),
   onMaximized: (callback) => ipcRenderer.on('maximized', () => callback()),
   onWindowed: (callback) => ipcRenderer.on('windowed', () => callback()),
-})
+});
+
+contextBridge.exposeInMainWorld('videoEvent', {
+  setVideoSources: (callback) => ipcRenderer.on('setVideoSources', (_event, sources) => callback(sources)),
+});

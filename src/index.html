@@ -59,19 +59,25 @@
         <input type="checkbox" name="isVideo" id="isVideo">
       </div>
       <div>
-        <label for="audioSource">Audio source : </label>
-        <select name="audioSource" id="audioSource">
-
+        <label for="audioSources">Audio source : </label>
+        <select name="audioSources" id="audioSources">
+        </select>
+      </div>
+      <div>
+        <label for="videoSources">Video source : </label>
+        <select name="videoSources" id="videoSources">
         </select>
       </div>
     </div>
     <div id="video-container">
-      <audio id="preview"></audio>
-      <audio id="record" controls></audio>
+      <!-- <audio id="preview"></audio>
+      <audio id="record" controls></audio> -->
+      <video id="preview" autoplay muted></video>
+      <video id="record" controls></video>
     </div>
     <div id="btn-container">
       <button id="startBtn">Start record</button>
-      <button id="stopBtn">Stop record</button>
+      <button id="stopBtn" disabled>Stop record</button>
     </div>
     <p id="log">
     </p>
