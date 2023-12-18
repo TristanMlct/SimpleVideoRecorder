@@ -1,32 +1,15 @@
+let isAudio = document.getElementById("is-audio");
 let videoSources = document.getElementById("videoSources");
-let audioSources = document.getElementById("audioSources");
 
 // Controls buttons and audio/video elements
 let preview = document.getElementById("preview");
-let recording = document.getElementById("record");
+let ctrlRecord = document.getElementById("ctrl-container");
 let startButton = document.getElementById("startBtn");
 let stopButton = document.getElementById("stopBtn")
 
-function setAudioSources() {
-  // Feed the select with audio sources
-  navigator.mediaDevices.enumerateDevices().then((devices) => {
-    devices.forEach((device) => {
-      if (device.kind === "audioinput") {
-        let lastSpaceIndex = device.label.lastIndexOf('(');
-        let label = device.label.substring(0, lastSpaceIndex - 1);
-  
-        let option = document.createElement("option");
-        option.text = label;
-        option.value = device.deviceId;
-        if (device.deviceId === "default") {
-          option.selected = true;
-        }
-  
-        audioSources.appendChild(option);
-      }
-    });
-  });
-}
+isAudio.addEventListener("click", () => {
+  isAudio.classList.toggle("active");
+});
 
 // Feed the select with video sources
 window.videoEvent.setVideoSources((sources) => {
@@ -40,29 +23,31 @@ window.videoEvent.setVideoSources((sources) => {
     videoSources.appendChild(option);
   });
 
-  setAudioSources();
   changePreview();
 });
-
-
-let mediaRecorder = null;
-let recordedChunks = [];
 
 videoSources.addEventListener("change", async () => {
   changePreview();
 });
 
+let mediaRecorder = null;
+let recordedChunks = [];
+
 async function changePreview() {
+  mediaRecorder = null;
+
   // Get the selected video source
   let videoSource = videoSources.options[videoSources.selectedIndex].value;
 
   // Get the stream
+  // Audio only if isAudio classList contain active
   let stream = await navigator.mediaDevices.getUserMedia({
-    audio: {
-      mandatory: {
-        chromeMediaSource: 'desktop',
-      }
-    },
+    audio: isAudio.classList.contains("active") ? 
+      {
+        mandatory: {
+          chromeMediaSource: 'desktop',
+        }
+      } : false,
     video: {
       mandatory: {
         chromeMediaSource: 'desktop',
@@ -81,36 +66,24 @@ async function changePreview() {
 }
 
 // Start recording
-startButton.addEventListener("click", async () => {
-  // Disable start button
-  startButton.disabled = true;
-  // Enable stop button
-  stopButton.disabled = false;
-
-  await changePreview()
-  
-  // Listen to dataavailable event which gets triggered whenever we have
-  // an audio blob available
-  mediaRecorder.addEventListener("dataavailable", (event) => {
-    recordedChunks.push(event.data);
-  });
-
-  // Start recording
-  mediaRecorder.start(1000);
-});
-
-// Stop recording
-stopButton.addEventListener("click", () => {
-  // Disable stop button
-  stopButton.disabled = true;
-  // Enable start button
-  startButton.disabled = false;
-
-  // Stop recording
-  mediaRecorder.stop();
-
-  // Save the video to the disk
-  saveVideo();
+ctrlRecord.addEventListener("click", async () => {
+  if (!startButton.disabled) {
+    startButton.disabled = true;
+    stopButton.disabled = false;
+    
+    await changePreview()
+    mediaRecorder.addEventListener("dataavailable", (event) => {
+      recordedChunks.push(event.data);
+    });
+    mediaRecorder.start(1000);
+  }
+  else {
+    stopButton.disabled = true;
+    startButton.disabled = false;
+    
+    mediaRecorder.stop();
+    saveVideo();
+  }
 });
 
 // Save video file on disk
@@ -144,7 +117,6 @@ async function saveVideo() {
   // This will download the file
   a.click();
 
-  // Wait for 0.5 seconds
   await new Promise((r) => setTimeout(r, 500));
 
   // Revoke the URL
@@ -152,4 +124,5 @@ async function saveVideo() {
 
   // Reset the recorded chunks
   recordedChunks = [];
+  mediaRecorder = null;
 }

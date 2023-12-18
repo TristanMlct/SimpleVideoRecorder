@@ -37,12 +37,18 @@
   </header>
   <main>
     <div id="settings-container">
-      <div>
-        <label for="audioSources">Audio source : </label>
-        <select name="audioSources" id="audioSources" disabled>
-        </select>
+      <div id="audio-settings">
+        <button id="is-audio" class="active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="w-6 h-6 text-white">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" x2="12" y1="19" y2="22"></line>
+          </svg>
+        </button>
       </div>
-      <div>
+      <div id="video-settings">
         <label for="videoSources">Video source : </label>
         <select name="videoSources" id="videoSources">
         </select>
@@ -52,7 +58,7 @@
       <!-- <audio id="preview"></audio>
       <audio id="record" controls></audio> -->
       <video id="preview" autoplay muted></video>
-      <div id="btn-container">
+      <div id="ctrl-container">
         <button id="startBtn">
           <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path

@@ -2,10 +2,10 @@ body {
   margin: 0;
   background-color: #3e3e42;
   padding-top: 40px;
+  overflow: hidden;
   color: #333;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
-  overflow: hidden;
 }
 
 header {
@@ -19,8 +19,8 @@ header {
   background-color: #252526;
   padding: 0 10px;
   height: 40px;
-  line-height: 40px;
   color: white;
+  line-height: 40px;
 }
 
 header {
@@ -32,9 +32,9 @@ header {
 
 header #logo {
   -webkit-app-region: no-drag;
+  margin-left: 5px;
   font-weight: 800;
   font-size: 16px;
-  margin-left: 5px;
 }
 
 header #win-button {
@@ -47,6 +47,7 @@ header #win-button {
 header #win-button button {
   -webkit-app-region: no-drag;
   cursor: pointer;
+  margin: 0 6px;
   outline: none;
   border: none;
   border-radius: 4px;
@@ -54,15 +55,14 @@ header #win-button button {
   padding: 4px;
   width: 24px;
   height: 24px;
-  margin: 0 6px;
   color: #999;
   font-weight: 800;
   font-size: 16px;
 }
 
 header #win-button button svg {
-  vertical-align: super;
   fill: white;
+  vertical-align: super;
 }
 
 header #win-button button:hover {
@@ -84,18 +84,31 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+  width: 100%;
+  height: 50px;
   font-size: large;
   font-family: 'Roboto', sans-serif;
-  padding: 20px 0;
-  height: 50px;
 }
 
-#settings-container div {
-  width: 25%;
+#settings-container #audio-settings button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  background-color: #bd0000;
+  width: 40px;
+  height: 40px;
+  color: white;
 }
 
-#settings-container div select {
-  width: 80%;
+#settings-container #audio-settings button.active {
+  background-color: rgb(39, 212, 23);
+}
+
+#settings-container #video-settings label {
+  color: white;
 }
 
 #video-container {
@@ -108,35 +121,36 @@ main {
   height: 100%;
 }
 
-#video-container #btn-container {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  border-radius: 50px;
-  background-color: #bd0000;
+#video-container #ctrl-container {
   display: flex;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: #bd0000;
   padding: 10px;
 }
 
-#video-container #btn-container button {
+#video-container #ctrl-container button {
   cursor: pointer;
   outline: none;
   border: none;
   background-color: transparent;
 }
 
-#video-container #btn-container button svg path {
+#video-container #ctrl-container button svg path {
   fill: white;
 }
 
-#video-container #btn-container button:disabled {
+#video-container #ctrl-container button:disabled {
   display: none;
 }
 
-#video-container #btn-container p {
-  color: white;
+#video-container #ctrl-container p {
   margin: 0 10px;
+  color: white;
 }
