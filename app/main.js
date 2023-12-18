@@ -27,8 +27,8 @@ async function getVideoSources() {
 function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 1000,
-    height: 600,
+    width: 960,
+    height: 670,
     center: true,
     webPreferences: {
       nodeIntegration: true,
@@ -37,10 +37,12 @@ function createWindow() {
     frame: false,
     resizable: false,
     fullscreenable: false,
+    maximizable: false,
   });
 
   // and load the index.html of the app.
   win.loadFile("src/index.html");
+
   // React specific code :
   // win.loadURL(
   //   isDev
@@ -59,22 +61,6 @@ function createWindow() {
   // Minimize app
   ipcMain.on('minApp', () => {
     win.minimize()
-  })
-
-  // Fullscreen app
-  ipcMain.on('fsApp', () => {
-    win.maximize()
-  })
-  win.on('maximize', () => {
-    win.webContents.send('maximized')
-  })
-
-  // Windowed app
-  ipcMain.on('winApp', () => {
-    win.unmaximize()
-  })
-  win.on('unmaximize', () => {
-    win.webContents.send('windowed')
   })
 
   app.on('activate', () => {
