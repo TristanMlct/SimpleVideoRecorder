@@ -40,7 +40,6 @@ header #buttons {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 150px;
 }
 
 header #buttons button {
@@ -53,6 +52,7 @@ header #buttons button {
   padding: 4px;
   width: 24px;
   height: 24px;
+  margin: 0 6px;
   color: #999;
   font-weight: 800;
   font-size: 16px;
@@ -73,6 +73,10 @@ header #buttons button.inactive {
 main {
   margin-top: 10px;
   padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #settings-container {
@@ -92,12 +96,25 @@ main {
   width: 80%;
 }
 
-#video-container #preview {
-  width: 300px;
-  height: 150px;
+#btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px 0;
 }
 
-#video-container #record {
-  width: 300px;
-  height: 150px;
+#btn-container button {
+  margin: 0 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+#video-container #preview {
+  width: 640px;
+  height: 360px;
 }

@@ -25,11 +25,10 @@ async function getVideoSources() {
 }
 
 function createWindow() {
-
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 400,
+    width: 1000,
+    height: 600,
     center: true,
     webPreferences: {
       nodeIntegration: true,
@@ -37,6 +36,7 @@ function createWindow() {
     },
     frame: false,
     resizable: false,
+    fullscreenable: false,
   });
 
   // and load the index.html of the app.

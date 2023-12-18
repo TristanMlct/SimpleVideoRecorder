@@ -1,7 +1,3 @@
-// Get the elements
-var isAudio = document.getElementById('isAudio');
-var isVideo = document.getElementById('isVideo');
-
 let videoSources = document.getElementById("videoSources");
 let audioSources = document.getElementById("audioSources");
 
@@ -11,38 +7,26 @@ let recording = document.getElementById("record");
 let startButton = document.getElementById("startBtn");
 let stopButton = document.getElementById("stopBtn")
 
-// Add event listeners
-isAudio.addEventListener('click', checkCheckboxes);
-isVideo.addEventListener('click', checkCheckboxes);
-
-// Block the record if no type is selected
-function checkCheckboxes() {
-  if (!isAudio.checked && !isVideo.checked) {
-    startBtn.disabled = true;
-  } else {
-    startBtn.disabled = false;
-  }
-}
-checkCheckboxes();
-
-// Feed the select with audio sources
-navigator.mediaDevices.enumerateDevices().then((devices) => {
-  devices.forEach((device) => {
-    if (device.kind === "audioinput") {
-      let lastSpaceIndex = device.label.lastIndexOf('(');
-      let label = device.label.substring(0, lastSpaceIndex - 1);
-
-      let option = document.createElement("option");
-      option.text = label;
-      option.value = device.deviceId;
-      if (device.deviceId === "default") {
-        option.selected = true;
+function setAudioSources() {
+  // Feed the select with audio sources
+  navigator.mediaDevices.enumerateDevices().then((devices) => {
+    devices.forEach((device) => {
+      if (device.kind === "audioinput") {
+        let lastSpaceIndex = device.label.lastIndexOf('(');
+        let label = device.label.substring(0, lastSpaceIndex - 1);
+  
+        let option = document.createElement("option");
+        option.text = label;
+        option.value = device.deviceId;
+        if (device.deviceId === "default") {
+          option.selected = true;
+        }
+  
+        audioSources.appendChild(option);
       }
-
-      audioSources.appendChild(option);
-    }
+    });
   });
-});
+}
 
 // Feed the select with video sources
 window.videoEvent.setVideoSources((sources) => {
@@ -56,6 +40,7 @@ window.videoEvent.setVideoSources((sources) => {
     videoSources.appendChild(option);
   });
 
+  setAudioSources();
   changePreview();
 });
 
@@ -67,13 +52,7 @@ videoSources.addEventListener("change", async () => {
   changePreview();
 });
 
-// videoSources.addEventListener("click", async () => {
-//   changePreview();
-// });
-
 async function changePreview() {
-  // Get the selected audio source
-  let audioSource = audioSources.options[audioSources.selectedIndex].value;
   // Get the selected video source
   let videoSource = videoSources.options[videoSources.selectedIndex].value;
 
