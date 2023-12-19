@@ -98,16 +98,47 @@ main {
   border: none;
   border-radius: 50px;
   background-color: #bd0000;
+  padding: 8px;
   width: 40px;
   height: 40px;
   color: white;
 }
 
 #settings-container #audio-settings button.active {
-  background-color: rgb(39, 212, 23);
+  background-color: rgb(33 183 19);
+}
+
+#settings-container #video-settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-radius: 50px;
+  background-color: rgb(33 183 19);
+  padding: 8px 10px;
+  width: 250px;
 }
 
 #settings-container #video-settings label {
+  width: 24px;
+  height: 24px;
+}
+
+#settings-container #video-settings label svg {
+  width: 24px;
+  height: 24px;
+}
+
+#settings-container #video-settings select {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  width: 200px;
+  height: 24px;
+  color: white;
+}
+
+#settings-container #video-settings select option {
+  background-color: #252526;
   color: white;
 }
 
@@ -131,8 +162,15 @@ main {
   align-items: center;
   cursor: pointer;
   border-radius: 50px;
-  background-color: #bd0000;
   padding: 10px;
+}
+
+#video-container .recording {
+  background-color: #bd0000;
+}
+
+#video-container .idle {
+  background-color: rgb(33 183 19);
 }
 
 #video-container #ctrl-container button {
