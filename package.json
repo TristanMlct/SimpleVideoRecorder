@@ -1,6 +1,6 @@
 {
-  "name": "sandbox",
-  "version": "1.0.1",
+  "name": "basic-video-recorder",
+  "version": "1.0.2",
   "author": "Tristan Mlct",
   "description": "Simple Video Recorder",
   "main": "app/main.js",
