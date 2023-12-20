@@ -1,6 +1,6 @@
 const { app, BrowserWindow, Menu, MenuItem, ipcMain, desktopCapturer } = require('electron');
 const path = require('node:path')
-// const isDev = require('electron-is-dev');
+const isDev = require('electron-is-dev');
 
 app.commandLine.appendSwitch('no-sandbox')
 app.commandLine.appendSwitch('disable-gpu')
@@ -51,7 +51,9 @@ function createWindow() {
   // );
 
   // Open the DevTools.
-  win.webContents.openDevTools({ mode: 'detach' });
+  if (isDev) {
+    win.webContents.openDevTools();
+  }
 
   // Close app
   ipcMain.on('closeApp', () => {
