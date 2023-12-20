@@ -2,6 +2,9 @@ const { app, BrowserWindow, Menu, MenuItem, ipcMain, desktopCapturer } = require
 const path = require('node:path')
 const isDev = require('electron-is-dev');
 
+// run this as early in the main process as possible
+if (require('electron-squirrel-startup')) app.quit();
+
 app.commandLine.appendSwitch('no-sandbox')
 app.commandLine.appendSwitch('disable-gpu')
 app.commandLine.appendSwitch('disable-software-rasterizer')
